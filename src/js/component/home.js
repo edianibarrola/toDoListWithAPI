@@ -4,21 +4,33 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-export function Home() {
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+export class Home extends React.Component {
+	constructor() {
+		super();
+
+		this.state = {
+			userInput: "",
+			inputArray: []
+		};
+	}
+
+	render() {
+		return (
+			<div className="container">
+				<div className="text-center mt-5">
+					<h1>{"ADD'er List "} </h1>
+
+					<input
+						type="text"
+						className="form-control"
+						aria-label="Large"
+						aria-describedby="inputGroup-sizing-sm"
+						onChange={event =>
+							this.setState({ userInput: event.target.value })
+						}
+					/>
+				</div>
+			</div>
+		);
+	}
 }
