@@ -15,13 +15,10 @@ export class Home extends React.Component {
 	}
 
 	addToList(input) {
-		//this.state.inputArray.push(input);
+		//this.setState(...prevState, input);
 		this.setState(prevState => ({
 			inputArray: [...prevState.inputArray, input]
 		}));
-		// this.setState(prevState => ({
-		// 	inputArray: [{ input, ...prevState.myArray }]
-		// }));
 	}
 	render() {
 		return (
@@ -46,6 +43,13 @@ export class Home extends React.Component {
 							ADD it up!
 						</button>
 					</div>
+				</div>
+				<div>
+					<ol className="col-4 mx-auto light ">
+						{this.state.inputArray.map((listItem, index) => {
+							return <li key={index}>{listItem}</li>;
+						})}
+					</ol>
 				</div>
 			</div>
 		);
