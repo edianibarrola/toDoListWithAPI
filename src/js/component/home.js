@@ -20,32 +20,46 @@ export class Home extends React.Component {
 			)
 		});
 	}
-
-	addToList(input) {
+	addToListButton(e) {
+		if (this.state.userInput) {
+			this.setState(prevState => ({
+				inputArray: [...prevState.inputArray, this.state.userInput],
+				userInput: ""
+			}));
+		}
+	}
+	addToListEnter(e) {
 		//this.setState(...prevState, input);
-		this.setState(prevState => ({
-			inputArray: [...prevState.inputArray, input]
-		}));
+		//if key clicked
+
+		if (e.keyCode == 13 && this.state.userInput) {
+			this.setState(prevState => ({
+				inputArray: [...prevState.inputArray, this.state.userInput],
+				userInput: ""
+			}));
+		}
 	}
 	render() {
 		return (
 			<div className="container">
 				<div className="text-center mt-5">
-					<h1>{"ADD List "} </h1>
+					<h1>{"Edian's To-do List "} </h1>
 					<div className="input-group">
 						<input
 							type="text"
 							className="form-control"
 							aria-label="Large"
 							aria-describedby="inputGroup-sizing-sm"
+							value={this.state.userInput}
 							onChange={event =>
 								this.setState({ userInput: event.target.value })
 							}
+							onKeyUp={e => this.addToListEnter(e)}
 						/>
 						<button
-							className="input-group-text"
+							className="input-group-append addButton"
 							onClick={() =>
-								this.addToList(this.state.userInput)
+								this.addToListButton(this.state.userInput)
 							}>
 							ADD it up!
 						</button>
