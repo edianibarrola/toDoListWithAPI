@@ -12,6 +12,23 @@ export class Home extends React.Component {
 			userInput: "",
 			inputArray: []
 		};
+		this.url = "https://assets.breatheco.de/apis/fake/todos/user/edian";
+	}
+
+	componentDidMount() {
+		fetch(this.url)
+			.then(function(response) {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				return response.json();
+			})
+			.then(jsonifiedResponse =>
+				this.setState({ inputArray: jsonifiedResponse })
+			)
+			.catch(function(error) {
+				console.log("Looks like there was a problem: \n", error);
+			});
 	}
 	removeListItem(id) {
 		this.setState({
@@ -20,21 +37,25 @@ export class Home extends React.Component {
 			)
 		});
 	}
+
 	addToListButton(e) {
-		if (this.state.userInput) {
+		let userInput = this.state.userInput;
+		if (userInput) {
+			let newItem = { label: userInput, done: false };
+			let newInputArray = this.state.inputArray.concat(newItem);
 			this.setState(prevState => ({
-				inputArray: [...prevState.inputArray, this.state.userInput],
+				inputArray: newInputArray,
 				userInput: ""
 			}));
 		}
 	}
 	addToListEnter(e) {
-		//this.setState(...prevState, input);
-		//if key clicked
+		let userInput = this.state.userInput;
 
-		if (e.keyCode == 13 && this.state.userInput) {
+		if (e.keyCode == 13 && userInput) {
+			let newItem = { label: userInput, done: false };
 			this.setState(prevState => ({
-				inputArray: [...prevState.inputArray, this.state.userInput],
+				inputArray: [...prevState.inputArray, newItem],
 				userInput: ""
 			}));
 		}
@@ -70,12 +91,12 @@ export class Home extends React.Component {
 						{this.state.inputArray.map((listItem, index) => {
 							return (
 								<li key={index}>
-									{listItem}{" "}
-									{/* <input
+									{listItem.label}{" "}
+									<input
 										className="float-left d-flex-inline"
 										type="checkbox"
 										key={index}
-									/> */}
+									/>
 									<i
 										className="fas float-right fa-ban"
 										onClick={() =>
