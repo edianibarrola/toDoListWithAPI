@@ -71,10 +71,11 @@ export class Home extends React.Component {
 							return (
 								<li key={index}>
 									{listItem}{" "}
-									<input
+									{/* <input
 										className="float-left d-flex-inline"
 										type="checkbox"
-									/>
+										key={index}
+									/> */}
 									<i
 										className="fas float-right fa-ban"
 										onClick={() =>
