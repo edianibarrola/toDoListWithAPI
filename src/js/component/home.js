@@ -43,10 +43,10 @@ export class Home extends React.Component {
 		if (userInput) {
 			let newItem = { label: userInput, done: false };
 			let newInputArray = this.state.inputArray.concat(newItem);
-			this.setState(prevState => ({
+			this.setState({
 				inputArray: newInputArray,
 				userInput: ""
-			}));
+			});
 		}
 	}
 	addToListEnter(e) {
@@ -54,10 +54,11 @@ export class Home extends React.Component {
 
 		if (e.keyCode == 13 && userInput) {
 			let newItem = { label: userInput, done: false };
-			this.setState(prevState => ({
-				inputArray: [...prevState.inputArray, newItem],
+			let newInputArray = this.state.inputArray.concat(newItem);
+			this.setState({
+				inputArray: newInputArray,
 				userInput: ""
-			}));
+			});
 		}
 	}
 	render() {
