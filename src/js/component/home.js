@@ -43,7 +43,7 @@ export class Home extends React.Component {
 		return (
 			<div className="container">
 				<div className="text-center mt-5">
-					<h1>{"Edian's To-do List "} </h1>
+					<h1>{"ADDlist "} </h1>
 					<div className="input-group">
 						<input
 							type="text"
