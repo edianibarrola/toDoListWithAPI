@@ -13,6 +13,13 @@ export class Home extends React.Component {
 			inputArray: []
 		};
 	}
+	removeListItem(id) {
+		this.setState({
+			inputArray: this.state.inputArray.filter(
+				(input, index) => index != id
+			)
+		});
+	}
 
 	addToList(input) {
 		//this.setState(...prevState, input);
@@ -47,7 +54,13 @@ export class Home extends React.Component {
 				<div>
 					<ol className="col-4 mx-auto light ">
 						{this.state.inputArray.map((listItem, index) => {
-							return <li key={index}>{listItem}</li>;
+							return (
+								<li
+									key={index}
+									onClick={() => this.removeListItem(index)}>
+									{listItem}
+								</li>
+							);
 						})}
 					</ol>
 				</div>

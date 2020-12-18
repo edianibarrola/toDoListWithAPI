@@ -11,3 +11,12 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+ol {
+    list-style-type: none;
+}
+body  {
+    background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100vh;
+}
