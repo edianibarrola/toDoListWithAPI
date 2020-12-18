@@ -69,10 +69,18 @@ export class Home extends React.Component {
 					<ol className="col-4 mx-auto light ">
 						{this.state.inputArray.map((listItem, index) => {
 							return (
-								<li
-									key={index}
-									onClick={() => this.removeListItem(index)}>
-									{listItem}
+								<li key={index}>
+									{listItem}{" "}
+									<input
+										className="float-left d-flex-inline"
+										type="checkbox"
+									/>
+									<i
+										className="fas float-right fa-ban"
+										onClick={() =>
+											this.removeListItem(index)
+										}
+									/>
 								</li>
 							);
 						})}
