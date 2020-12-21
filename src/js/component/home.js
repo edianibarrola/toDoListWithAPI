@@ -42,12 +42,22 @@ export class Home extends React.Component {
 		let userInput = this.state.userInput;
 		if (userInput) {
 			let newItem = { label: userInput, done: false };
-			let newInputArray = this.state.inputArray.concat(newItem);
+			var newInputArray = this.state.inputArray.concat(newItem);
 			this.setState({
 				inputArray: newInputArray,
 				userInput: ""
 			});
 		}
+		fetch(this.url, {
+			method: "PUT", // or 'POST'
+			body: JSON.stringify(newInputArray), // data can be `string` or {object}!
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(res => res.json())
+			.then(response => console.log("Success:", response))
+			.catch(error => console.error("Error:", error));
 	}
 	addToListEnter(e) {
 		let userInput = this.state.userInput;
